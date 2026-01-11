@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 04:04:44 by akkim             #+#    #+#             */
-/*   Updated: 2026/01/01 04:40:20 by akkim            ###   ########.fr       */
+/*   Updated: 2026/01/10 02:59:24 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int mouse_event(int button, int x, int y, void *param)
 
 int key_event(int keycode, void *param)
 {
-    t_vars *vars = (t_vars *)param;
+    t_fdf *vars = (t_fdf *)param;
 
     if (keycode == 65307) // ESC 키 (X11 기준)
     {
@@ -51,7 +51,7 @@ int expose_event(void *param)
 // 윈도우 X 버튼 (DestroyNotify) 이벤트
 int close_window(void *param)
 {
-    t_vars *vars = (t_vars *)param;
+    t_fdf *vars = (t_fdf *)param;
 
     printf("X button clicked, exiting...\n");
     mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);

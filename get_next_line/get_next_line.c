@@ -6,7 +6,7 @@
 /*   By: akkim <akkim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 15:48:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/10/12 20:36:47 by akkim            ###   ########.fr       */
+/*   Updated: 2026/01/11 16:28:09 by akkim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!save || save[0] == '\0')
 	{
-		free(save);
+		if (save)
+			free(save);
 		save = ft_strjoin("", "");
 		if (!save)
 			return (NULL);
@@ -34,7 +35,12 @@ char	*get_next_line(int fd)
 	if (!tmp)
 		return (free(buf), NULL);
 	if (tmp[0] == '\0')
-		return (free(save), free(buf), save = NULL, NULL);
+	{
+		if (save)
+			free(save);
+		free(buf);
+		return (save = NULL, NULL);
+	}
 	save = tmp;
 	return (free(buf), ft_new_save(&save));
 }
